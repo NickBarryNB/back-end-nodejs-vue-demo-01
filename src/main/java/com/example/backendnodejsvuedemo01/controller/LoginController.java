@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
 /**
@@ -31,7 +32,8 @@ public class LoginController {
     @CrossOrigin
     @PostMapping(value = "api/login")
     @ResponseBody
-    public Result login(@RequestBody User requestUser){
+    public Result login(@RequestBody User requestUser,
+                        HttpSession session){
         //对html标签进行转义，防止XSS攻击
         String username = requestUser.getUsername();
         String password = requestUser.getPassword();
@@ -49,6 +51,8 @@ public class LoginController {
         if(user == null){
             return new Result(400);
         }else {
+            //保存用户user的session在session变量中
+            session.setAttribute("user",user);
             return new Result(200);
         }
     }
