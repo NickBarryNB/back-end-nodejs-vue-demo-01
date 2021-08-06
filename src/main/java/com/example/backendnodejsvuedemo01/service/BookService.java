@@ -50,4 +50,10 @@ public class BookService {
         Category category = categoryService.get(cid);
         return bookDao.findAllByCategory(category);
     }
+
+//    根据标题或作者进行模糊查询
+//    因为 DAO 里是两个参数，所以在 Service 里把同一个参数写了两遍。用户在搜索时无论输入的是作者还是书名，都会对两个字段进行匹配
+    public List<Book> Search(String keywords){
+        return bookDao.findALlByTitleLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
+    }
 }

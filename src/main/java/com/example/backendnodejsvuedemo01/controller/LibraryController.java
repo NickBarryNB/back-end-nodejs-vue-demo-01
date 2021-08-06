@@ -42,4 +42,14 @@ public class LibraryController {
             return list();
         }
     }
+
+    @GetMapping("/api/search")
+    public List<Book> searchResult(@RequestParam("keywords") String keywords){
+        //keywords为空是查询出所有的书籍
+        if("".equals(keywords)){
+            return bookService.list();
+        }else {
+            return bookService.Search(keywords);
+        }
+    }
 }
