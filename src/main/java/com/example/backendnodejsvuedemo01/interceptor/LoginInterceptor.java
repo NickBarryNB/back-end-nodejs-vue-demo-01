@@ -38,7 +38,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
         //此处正确访问了index路径（被拦截）后，进行user对比，正确就放行，不正确就跳转回login界面
-        if(beganingWith(page,requireAuthPages)){
+        if(beginingWith(page,requireAuthPages)){
             //查看session中有没有用户user的信息，有就
             User user = (User) session.getAttribute("user");
             //没有查询到用户，则跳转回login页面
@@ -51,7 +51,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     //判断访问路径page是否存在拦截列表中，存在就返回true再进行拦截手段，不存在就放行
-    private boolean beganingWith(String page, String[] requireAuthPages) {
+    private boolean beginingWith(String page, String[] requireAuthPages) {
         boolean result = false;
         for (String requireAuthPage: requireAuthPages){
             //判断page的是不是以requireAuthPage开头的字符串
