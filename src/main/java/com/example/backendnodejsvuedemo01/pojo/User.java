@@ -1,6 +1,7 @@
 package com.example.backendnodejsvuedemo01.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
 import javax.persistence.*;
 
@@ -21,6 +22,7 @@ import javax.persistence.*;
 // 并添加 handler 和 hibernateLazyInitializer 这两个无须 json 化的属性，
 // 所以这里需要用 JsonIgnoreProperties 把这两个属性忽略掉
 @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,28 +31,7 @@ public class User {
 
     String username;
     String password;
+//    加盐加密的盐
+    String salt;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
