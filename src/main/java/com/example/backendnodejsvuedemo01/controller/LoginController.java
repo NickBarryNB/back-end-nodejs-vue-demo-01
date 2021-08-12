@@ -119,4 +119,15 @@ public class LoginController {
 
         return ResultFactory.buildSuccessResult(user);
     }
+
+    // 登出 logout
+    @GetMapping(value = "api/logout")
+    @ResponseBody
+    public Result logout(){
+        Subject subject = SecurityUtils.getSubject();
+        // 核心就是 subject.logout()
+        subject.logout();
+        String message = "登出成功";
+        return ResultFactory.buildSuccessResult(message);
+    }
 }
