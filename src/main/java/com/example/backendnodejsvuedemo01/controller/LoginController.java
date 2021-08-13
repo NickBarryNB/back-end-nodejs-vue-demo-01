@@ -76,7 +76,7 @@ public class LoginController {
 
 //        subject.getSession().setTimeout(1000);
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, user.getPassword());
-//        usernamePasswordToken.setRememberMe(true);
+        usernamePasswordToken.setRememberMe(true);
         try {
 //            实际开发中，我们只需要调用一句 subject.login(usernamePasswordToken) 就可以执行验证
 //            大概经过七八层调用，Shiro 通过 Realm 里我们重写的 doGetAuthenticationInfo 方法获取到了验证信息，
@@ -129,5 +129,12 @@ public class LoginController {
         subject.logout();
         String message = "登出成功";
         return ResultFactory.buildSuccessResult(message);
+    }
+
+    // 认证
+    @ResponseBody
+    @GetMapping(value = "api/authentication")
+    public String authentication(){
+        return "身份认证成功";
     }
 }

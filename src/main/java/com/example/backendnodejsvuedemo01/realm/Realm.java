@@ -29,16 +29,6 @@ public class Realm extends AuthorizingRealm {
     }
 
     // 获取认证信息，即根据 token 中的用户名从数据库中获取密码、盐等并返回
-//    @Override
-//    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-//        String userName = authenticationToken.getPrincipal().toString();
-//        User user = userService.getByName(userName);
-//        String passwordInDB = user.getPassword();
-//        String salt = user.getSalt();
-//        SimpleAuthenticationInfo authorizationInfo = new SimpleAuthenticationInfo(userName, passwordInDB, ByteSource.Util.bytes(salt), getName());
-//        return authorizationInfo;
-//    }
-
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userName = token.getPrincipal().toString();

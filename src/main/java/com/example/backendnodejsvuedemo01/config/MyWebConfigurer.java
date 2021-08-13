@@ -34,12 +34,24 @@ public class MyWebConfigurer implements WebMvcConfigurer {
     }
 
     //解决跨域问题，此处允许所有请求跨域
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOrigins("*")
+//                .allowedHeaders("*")
+//                .allowedMethods("*");
+//    }
+
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        // 在 allowCredentials(true) ，即允许跨域使用 cookie 的情况下，
+        // allowedOrigins() 不能使用通配符 *，这也是出于安全上的考虑
         registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedHeaders("*")
-                .allowedMethods("*");
+                .allowCredentials(true)
+                .allowedOrigins("http://localhost:8080")
+                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+                .allowedHeaders("*");
     }
 
     //把上传图片的url和本地路径关联起来
